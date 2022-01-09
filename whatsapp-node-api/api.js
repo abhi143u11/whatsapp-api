@@ -8,33 +8,37 @@ const config = require('./config.json');
 const { Client } = require('whatsapp-web.js');
 const SESSION_FILE_PATH = process.env.SESSION_FILE_PATH || './session.json';
 
-let sessionCfg;
-if (fs.existsSync(SESSION_FILE_PATH)) {
-    sessionCfg = require(SESSION_FILE_PATH);
-}
+// let sessionCfg;
+// if (fs.existsSync(SESSION_FILE_PATH)) {
+//     sessionCfg = require(SESSION_FILE_PATH);
+// }
 
-process.title = "whatsapp-node-api";
-global.client = new Client({
-    puppeteer: {
-        headless: true,
-        args: [
-            '--no-sandbox',
-            '--disable-setuid-sandbox',
-            '--unhandled-rejections=strict'
-    ]},
-    session: sessionCfg
-});
+// process.title = "whatsapp-node-api";
+// global.client = new Client({
+//     puppeteer: {
+//         headless: true,
+//         args: [
+//             '--no-sandbox',
+//             '--disable-setuid-sandbox',
+//             '--unhandled-rejections=strict'
+//     ]},
+//     session: sessionCfg
+// });
 
-global.authed = false;
+// global.authed = false;
 
-const app = express();
+// const app = express();
 
-const port = process.env.PORT || config.port;
-//Set Request Size Limit 50 MB
-app.use(bodyParser.json({ limit: '50mb' }));
+// const port = process.env.PORT || config.port;
+// //Set Request Size Limit 50 MB
+// app.use(bodyParser.json({ limit: '50mb' }));
 
-app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(express.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
+const qrcode = require('qrcode-terminal');
+
+const { Client } = require('whatsapp-web.js');
+const client = new Client();
 
 client.on('qr', qr => {
     qrcode.generate(qr, {small: true});
