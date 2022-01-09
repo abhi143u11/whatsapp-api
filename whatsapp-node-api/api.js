@@ -5,7 +5,7 @@ const axios = require('axios');
 const shelljs = require('shelljs');
 // const qrcode = require('qrcode-terminal');
 const config = require('./config.json');
-const { Client } = require('whatsapp-web.js');
+// const { Client } = require('whatsapp-web.js');
 const SESSION_FILE_PATH = process.env.SESSION_FILE_PATH || './session.json';
 
 // let sessionCfg;
